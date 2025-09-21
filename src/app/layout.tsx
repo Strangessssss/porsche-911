@@ -23,12 +23,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+
+      <html lang="en">
+      <head>
+          <meta charSet="UTF-8"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+          <meta name="apple-mobile-web-app-capable" content="yes"/>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+          <title>My Web App</title>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen w-screen m-0 p-0 flex flex-col items-center`}
       >
-        {children}
+          {children}
       </body>
-    </html>
+      </html>
   );
 }

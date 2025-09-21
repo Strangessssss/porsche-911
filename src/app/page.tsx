@@ -1,103 +1,213 @@
-import Image from "next/image";
+"use client"
+
+import ThreeScene from "@/components/ThreeScene";
+// import {useEffect, useState} from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    const keyFrames = [
+        {
+            frame: 0,
+            rotation: { x:0.4, y: -Math.PI / 2, z:-.1 },
+            position: { x:1, y:13.3, z:-17 },
+        },
+        {
+            frame: 214,
+            rotation: { x:0.4, y: -Math.PI / 2, z:-.1 },
+            position: { x:1, y:13.3, z:-17 },
+        },
+        {
+            frame: 320,
+            rotation: { x: Math.PI / 2 , y:Math.PI / 2, z:0 },
+            position: { x:-2, y:7.6, z:-17 },
+        },
+        {
+            frame: 600,
+            rotation: { x: Math.PI / 2 , y:Math.PI / 2, z:0 },
+            position: { x:-2, y:7.6, z:-17 },
+        },
+        {
+            frame: 650,
+            rotation: { x:0.15, y:Math.PI / 2, z:0 },
+            position: { x:-0, y:3.4, z:-17 },
+        },
+        {
+            frame: 850,
+            rotation: { x:0.15, y:-Math.PI / 2, z:0 },
+            position: { x:-0, y:3.4, z:-17 },
+        },
+        {
+            frame: 900,
+            rotation: { x:0, y:-Math.PI / 2, z:0 },
+            position: { x:0, y:0.8, z:-17 },
+        },
+        {
+            frame: 1000,
+            rotation: { x:0, y:-Math.PI * 3 / 2, z:0 },
+            position: { x:0, y:0.8, z:-17 },
+        },
+        {
+            frame: 1050,
+            rotation: { x:Math.PI / 2, y:Math.PI / 2, z:0 },
+            position: { x:0, y:-2.3, z:-25 },
+        },
+        {
+            frame: 1270,
+            rotation: { x:Math.PI / 2, y:Math.PI / 2, z:0 },
+            position: { x:0, y:-2.3, z:-25 },
+        },
+        {
+            frame: 1400,
+            rotation: { x:0, y:Math.PI / 2, z:0 },
+            position: { x:0, y:-9.7, z:-25 },
+        },
+        {
+            frame: 1700,
+            rotation: { x:0, y:-Math.PI / 2, z:0 },
+            position: { x:0, y:-9.7, z:-25 },
+        },
+        {
+            frame: 1800,
+            rotation: { x:0, y:-Math.PI / 2, z:0 },
+            position: { x:0, y:-9.7, z:-25 },
+        },
+    ]
+
+    // const [scrollTop, setScrollTop] = useState(0);
+    // const [scroll, setScroll] = useState(0);
+
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setScroll(prev => {
+    //             const next = prev + 1;
+    //             window.scrollTo(0, next);
+    //             return next;
+    //         });
+    //     }, 20)
+    //
+    //     return () => clearInterval(interval);
+    // }, []); // smooth scrolling
+
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         setScrollTop(window.scrollY);
+    //     };
+    //
+    //     window.addEventListener("scroll", handleScroll);
+    // }, [])
+
+
+
+    return (
+        <div className="w-full h-full flex justify-start items-center relative">
+            <ThreeScene keyFrames={keyFrames}/>
+            {/*<div className="fixed z-50">*/} {/* To crack frames (scroll progress) */}
+            {/*    {scrollTop}*/}
+            {/*</div>*/}
+            <div className="w-full h-full flex justify-start items-center flex-col">
+                <div className="text-white text-4xl m-10 z-10 border-b-4 border-yellow-500">
+                    Porsche 911 Carrera 4S
+                </div>
+                <div className="text-white text-2 m-10 z-10 w-full p-4">
+                    <div>The Porsche 911 Carrera 4S</div>
+                    <div>is a perfect blend of</div>
+                    <div>performance, luxury,</div>
+                    <div>and iconic</div>
+                    <div></div>
+                    <div>design.</div>
+                    <div>Known</div>
+                    <div>for its dynamic driving experience and all-wheel-drive system, the 911 Carrera 4S brings a balance of power and precision that enthusiasts crave. With a heritage dating back over 50 years, the 911 remains a symbol of automotive excellence.</div>
+                </div>
+                <div className="text-white text-2 m-10 z-10 w-full p-4 text-right">
+                    <div>The Carrera 4S</div>
+                    <div>features a sleek,</div>
+                    <div>aerodynamic</div>
+                    <div>silhouette</div>
+                    <div>with smooth</div>
+                    <div>lines and</div>
+                    <div>a sporty stance</div>
+                    <div className="h-10"/>
+                    <div className="text-left">
+                        <div>Signature elements include:</div>
+                        <div className="h-7"/>
+                        <div className="w-full flex-col flex justify-between gap-30 text-center">
+                            <div className="bg-yellow-500 text-black p-2">
+                                •	LED matrix headlights for a modern, sharp look
+                            </div>
+                            <div className="bg-yellow-500 text-black p-2">
+                                •	Wide rear fenders emphasizing its performance capabilities
+                            </div>
+                            <div className="bg-yellow-500 text-black p-2">
+                                •	Distinctive rear light strip connecting the taillights
+                            </div>
+                            <div className="bg-yellow-500 text-black p-2">
+                                •	Lightweight alloy wheels for improved handling
+                            </div>
+                        </div>
+                        <div className="w-full aspect-square mt-20 relative">
+                            <div className="pl-2 border-l-2 border-yellow-500 absolute left-30 top-10">
+                                <div>
+                                    <span>4. 1 </span>
+                                    <span className="text-[11px]">s</span>
+                                </div>
+                                <div className="text-[10px] text-gray-500">
+                                    Acceleration 0 - 100 km/h
+                                </div>
+                            </div>
+                            <div className="pl-2 border-l-2 border-yellow-500 absolute left-5 top-80">
+                                <div>
+                                    290 kW / 394 PS
+                                </div>
+                                <div className="text-[10px] text-gray-500">
+                                    Power (kW)/Power (PS)
+                                </div>
+                            </div>
+                            <div className="pl-2 border-l-2 border-yellow-500 absolute left-70 top-70">
+                                <div>
+                                    <span>294 </span>
+                                    <span className="text-[11px]">km/h</span>
+                                </div>
+                                <div className="text-[10px] text-gray-500">
+                                    Top speed
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-15 w-full flex flex-row">
+                            <div className="border-t-2 border-yellow-500 border-b-2 border-l-2">
+                                The one and always.
+                            </div>
+                            <div className="text-transparent flex-1 border-b-2 border-t-2 border-yellow-500">11</div>
+                            <div className="bg-yellow-500 w-20 text-transparent">1111</div>
+                        </div>
+                        <div className="mt-5">
+                            <div className="flex flex-row gap-2">
+                                <span>Anyone who dreams of a</span>
+                                <span className="bg-yellow-500 pl-1 pr-1">Porsche</span>
+                            </div>
+                            <div>
+                                usually has an image in their mind.
+                            </div>
+                            <div className="flex flex-row gap-2 mt-3 mb-2">
+                                <span className="bg-yellow-700 pl-1 pr-1 text-nowrap">The 911</span>
+                                <span className="bg-yellow-600 pl-1 pr-1">has been the epitome of an</span>
+                                <span className="bg-yellow-500 pl-1 pr-1">exciting, powerful sports car with</span>
+                            </div>
+                            <div className="bg-yellow-300 text-black pl-1 pr-1 text-nowrap">
+                                day-to-day usability for 60 years.
+                            </div>
+                            <div>
+                                Take a seat behind the wheel of the new 911 and become part of a unique community.
+                            </div>
+                        </div>
+                        <div className="w-full flex mt-30">
+                            <button className="bg-yellow-700 flex-1 m-0 text-black p-2">
+                                Buy now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
   );
 }
