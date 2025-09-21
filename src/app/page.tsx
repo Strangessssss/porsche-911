@@ -1,6 +1,7 @@
 "use client"
 
 import ThreeScene from "@/components/ThreeScene";
+import React, {useEffect} from "react";
 // import {useEffect, useState} from "react";
 
 export default function Home() {
@@ -96,7 +97,18 @@ export default function Home() {
     //     window.addEventListener("scroll", handleScroll);
     // }, [])
 
+    const [isDesktop, setIsDesktop] = React.useState(false);
 
+    useEffect(() => {
+         setIsDesktop(window.matchMedia("(min-width: 769px)").matches);
+    }, [])
+
+    if (isDesktop) return (
+        <div className="fixed top-0 left-0 w-full h-full bg-black text-white flex flex-col justify-center items-center z-50 text-center p-6">
+            <h1 className="text-2xl font-bold mb-4">🚨 Switch to your Phone</h1>
+            <p>This experience is designed for mobile devices. Please open this site on your smartphone 📱.</p>
+        </div>
+    )
 
     return (
         <div className="w-full h-full flex justify-start items-center relative">

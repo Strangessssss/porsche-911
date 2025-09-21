@@ -18,6 +18,8 @@ const ThreeScene = ({ keyFrames }: ThreeSceneProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const modelRef = useRef<THREE.Group | null>(null);
 
+    const [progress, setProgress] = React.useState(0);
+
     const currentKeyFrame = useRef<KeyFrame>(
         keyFrames[1]
     );
@@ -55,8 +57,17 @@ const ThreeScene = ({ keyFrames }: ThreeSceneProps) => {
                 car.position.set(currentKeyFrame.current.position.x, currentKeyFrame.current.position.y, currentKeyFrame.current.position.z);
                 scene.add(car);
                 modelRef.current = car;
+                setProgress(100);
             },
-            undefined,
+            (xhr) => {
+                if (xhr.lengthComputable) {
+                    const percentComplete = (xhr.loaded / xhr.total) * 100;
+                    setProgress(percentComplete);
+                } else {
+                    // Fallback: estimate using bytes
+                    setProgress(Math.min(99, (xhr.loaded / 1000000) * 100));
+                }
+            },
             (error) => console.error(error)
         );
 
@@ -132,15 +143,31 @@ const ThreeScene = ({ keyFrames }: ThreeSceneProps) => {
         };
     }, [keyFrames]);
 
+
     return (
-        <div
-            ref={containerRef}
-            style={{
-                position: "absolute",
-                top: 0,
-                zIndex: 0,
-            }}
-        />
+        <>
+            {progress < 100 && (
+                <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black z-50 transition-opacity duration-500"
+                     style={{ opacity: progress === 100 ? 0 : 1 }}>
+                    <div className="w-1/2 h-4 bg-gray-800 rounded">
+                        <div
+                            className="h-full bg-yellow-500 rounded text-black text-xs flex items-center justify-center"
+                            style={{ width: `${progress}%` }}
+                        >
+                            {Math.round(progress)}%
+                        </div>
+                    </div>
+                </div>
+            )}
+            <div
+                ref={containerRef}
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    zIndex: 0,
+                }}
+            />
+        </>
     );
 };
 
